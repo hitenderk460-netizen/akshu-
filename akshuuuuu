@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Akshu ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffd6e0, #c8f7ff);
+  transition: background 1s ease;
+  overflow: hidden;
+}
+
+/* Romantic Background */
+.romantic-bg {
+  background: linear-gradient(135deg, #ff1e56, #ff4d6d) !important;
+}
+
+/* Fullscreen screens */
+.fullscreen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ff1e56, #ff4d6d);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  font-size: 42px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  z-index: 10;
+  text-align: center;
+  padding: 20px;
+}
+
+.fullscreen.show {
+  opacity: 1;
+}
+
+/* Glow animation */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff,
+                 0 0 20px #ffb3c6,
+                 0 0 30px #fff;
+  }
+  to {
+    text-shadow: 0 0 25px #fff,
+                 0 0 45px #ffccd5,
+                 0 0 65px #fff;
+  }
+}
+
+.fullscreen span {
+  animation: glow 2s infinite alternate;
+}
+
+/* Floating Hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp linear forwards;
+  opacity: 0.8;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Container */
+.container {
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  width: 90%;
+  max-width: 420px;
+  transition: all 0.6s ease;
+  position: relative;
+  z-index: 2;
+}
+
+button {
+  margin: 12px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  transform: scale(1.08);
+}
+
+.refresh-btn { background: #ff6b81; color: white; }
+.yes-btn { background: #ff1e56; color: white; }
+.no-btn { background: #6c757d; color: white; position: relative; }
+
+.hidden { display: none; }
+
+.message {
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.message.show {
+  opacity: 1;
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  top: -10px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/BciS5krYL80?autoplay=1&mute=1&loop=1&playlist=BciS5krYL80"
+frameborder="0" allow="autoplay"></iframe>
+
+<div class="container">
+
+  <div id="errorScreen">
+    <h1>404</h1>
+    <p>Oops Akshu… Page Not Found 🥺</p>
+    <button class="refresh-btn" onclick="showValentine()">Refresh</button>
+  </div>
+
+  <div id="valentineScreen" class="hidden">
+    <h2 style="color:#ff1e56;">Akshu 💖</h2>
+    <h2>Will you be my Valentine?</h2>
+
+    <button class="yes-btn" onclick="yesClicked()">YES</button>
+    <button class="no-btn" id="noBtn" onclick="noClicked()">NO 💔</button>
+
+    <div class="message" id="revealMessage">
+      <p><strong>By clicking YES you agree to:</strong></p>
+      <p>💞 Unlimited cuddles</p>
+      <p>🍕 Lifetime supply of bad puns</p>
+      <p>😂 Mutual pizza stealing rights</p>
+      <p>Effective immediately! 🚀</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Screens -->
+<div class="fullscreen" id="yesScreen">
+  <span>She Said YES ❤️</span>
+</div>
+
+<div class="fullscreen" id="loveScreen">
+  <span>I Love You Akshu ❤️ Forever.</span>
+</div>
+
+<script>
+let noClickCount = 0;
+
+/* Floating Hearts */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * window.innerWidth + "px";
+  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 400);
+
+function showValentine() {
+  document.getElementById("errorScreen").classList.add("hidden");
+  document.getElementById("valentineScreen").classList.remove("hidden");
+}
+
+function yesClicked() {
+  document.body.classList.add("romantic-bg");
+
+  document.querySelector(".yes-btn").style.display = "none";
+  document.querySelector(".no-btn").style.display = "none";
+
+  startConfetti();
+
+  setTimeout(() => {
+    document.getElementById("yesScreen").classList.add("show");
+  }, 1200);
+
+  setTimeout(() => {
+    document.getElementById("yesScreen").classList.remove("show");
+    document.getElementById("loveScreen").classList.add("show");
+  }, 4200); // 3 seconds after YES screen appears
+}
+
+function noClicked() {
+  const noBtn = document.getElementById("noBtn");
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 50);
+  noBtn.style.position = "fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+
+  noClickCount++;
+  if (noClickCount >= 2) {
+    noBtn.innerHTML = "NO 😭";
+  }
+}
+
+function startConfetti() {
+  const duration = 5000;
+  const end = Date.now() + duration;
+
+  const interval = setInterval(() => {
+    if (Date.now() > end) {
+      clearInterval(interval);
+      return;
+    }
+
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.style.left = Math.random() * window.innerWidth + "px";
+    confetti.style.backgroundColor =
+      `hsl(${Math.random() * 360}, 100%, 50%)`;
+    confetti.style.animationDuration =
+      (Math.random() * 2 + 3) + "s";
+
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 5000);
+
+  }, 150);
+}
+</script>
+
+</body>
+</html>
